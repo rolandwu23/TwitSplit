@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -19,7 +19,7 @@
         <item name="android:textColorPrimary">@color/input_text</item>
         <item name="android:textColorHint">@color/input_text</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:background">@color/background</item>
+        <item name="android:background">@color/editText_background</item>
         <item name="colorAccent">#ffffff</item>
     </style>
 
