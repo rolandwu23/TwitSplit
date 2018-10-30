@@ -1,4 +1,4 @@
-package com.the_akm.akm.tee
+package com.the_akm.akm.TwitSplit
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

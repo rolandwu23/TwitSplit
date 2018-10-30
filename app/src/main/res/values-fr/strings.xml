@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cardView_text">Bonjour</string>
+    <string name="editText_hint">Texte de saisie</string>
+    <string name="button_text">Envoyer</string>
+</resources>

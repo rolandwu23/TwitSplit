@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">TwitSplit</string>
+    <string name="app_name" translatable="false">TwitSplit</string>
     <string name="button_text">Send</string>
     <string name="editText_hint">Input Text</string>
+    <string name="cardView_text">Hello</string>
 </resources>

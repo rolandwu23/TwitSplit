@@ -1,4 +1,4 @@
-package com.the_akm.akm.tee
+package com.the_akm.akm.TwitSplit
 
 import org.junit.Test
 

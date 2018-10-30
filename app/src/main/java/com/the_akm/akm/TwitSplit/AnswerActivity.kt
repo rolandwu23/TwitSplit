@@ -1,13 +1,11 @@
-package com.the_akm.akm.tee
+package com.the_akm.akm.TwitSplit
 
-import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.ListView
-import com.the_akm.akm.tee.ConstantCommons.INTEXT_XTRAS_TWEETERS
-import kotlinx.android.synthetic.*
+import com.the_akm.akm.TwitSplit.ConstantCommons.ACTION_BAR_HOME_BUTTON
+import com.the_akm.akm.TwitSplit.ConstantCommons.INTEXT_XTRAS_TWEETERS
 import kotlinx.android.synthetic.main.activity_answer.*
 import java.util.*
 
@@ -19,25 +17,32 @@ class AnswerActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-        supportActionBar?.setTitle("Back")
+        supportActionBar?.setTitle(ACTION_BAR_HOME_BUTTON)
 
         val text = intent.getStringExtra(INTEXT_XTRAS_TWEETERS)
 
-        tweeter_listview.divider = resources.getDrawable(android.R.color.transparent)
+//        tweeter_listview.divider = ResourcesCompat.getDrawable(resources,android.R.color.transparent,null)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            answerActivity_listview.divider = resources.getDrawable(android.R.color.transparent,applicationContext.theme)
+        } else {
+            answerActivity_listview.divider = resources.getDrawable(android.R.color.transparent)
+        }
 
         if(text.length <=50)
         {
             val tweets = dynamic(text,50)
-            val mAdapter = TweeterAdapter(this,tweets)
-            tweeter_listview.adapter = mAdapter
+            val mAdapter = TwitSplitAdapter(this,tweets)
+            answerActivity_listview.adapter = mAdapter
         }else {
             val tweets = dynamic(text, 45)
-            val mAdapter = TweeterAdapter(this, tweets)
-            tweeter_listview.adapter = mAdapter
+            val mAdapter = TwitSplitAdapter(this, tweets)
+            answerActivity_listview.adapter = mAdapter
         }
     }
 
-    fun dynamic(text: String, width: Int): ArrayList<String> {
+    fun dynamic(text: String, width: Int): ArrayList<String>
+    {
         val words = text.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         val count = words.size
         val slack = Array(count) { IntArray(count) }
@@ -101,11 +106,6 @@ class AnswerActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        this.clearFindViewByIdCache()
     }
 
 }
