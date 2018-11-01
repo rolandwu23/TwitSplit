@@ -21,8 +21,6 @@ class AnswerActivity : AppCompatActivity() {
 
         val text = intent.getStringExtra(INTEXT_XTRAS_TWEETERS)
 
-//        tweeter_listview.divider = ResourcesCompat.getDrawable(resources,android.R.color.transparent,null)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             answerActivity_listview.divider = resources.getDrawable(android.R.color.transparent,applicationContext.theme)
         } else {
@@ -35,7 +33,7 @@ class AnswerActivity : AppCompatActivity() {
             val mAdapter = TwitSplitAdapter(this,tweets)
             answerActivity_listview.adapter = mAdapter
         }else {
-            val tweets = dynamic(text, 45)
+            val tweets = dynamic(text, 46)
             val mAdapter = TwitSplitAdapter(this, tweets)
             answerActivity_listview.adapter = mAdapter
         }

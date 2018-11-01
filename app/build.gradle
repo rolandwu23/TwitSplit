@@ -7,12 +7,13 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.the_akm.akm.twitsplit"
+        applicationId "com.the_akm.akm.Twitsplit"
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -32,7 +33,16 @@ dependencies {
     implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
 
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.testRulesVersion"
+    androidTestImplementation "androidx.test:core:$rootProject.testCoreVersion"
+
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoCoreVersion"
+  
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoCoreVersion"
+
+
+
 }
-//testImplementation 'junit:junit:4.12'
-//androidTestImplementation 'com.android.support.test:runner:1.0.2'
-//androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+

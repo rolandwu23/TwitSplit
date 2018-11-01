@@ -1,6 +1,7 @@
 package com.the_akm.akm.TwitSplit
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class TwitSplitAdapter(var con: Context, var strings: List<String>) : ArrayAdapt
         else {
             val text = (position + 1).toString() + "/" + size + " " + st
             viewholder.info_text.text = text
+            Log.e("text", text)
         }
 
         return convertView
