@@ -10,7 +10,6 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <uses-library android:name="android.test.runner"/>
 
         <activity android:name="com.the_akm.akm.TwitSplit.TwitSplitActivity">
             <intent-filter>

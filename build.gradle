@@ -31,7 +31,6 @@ ext{
     testRulesVersion = '1.1.0'
 
     espressoCoreVersion = '3.1.0'
-    mockitoCoreVersion = '1.10.19'
 
 }
 

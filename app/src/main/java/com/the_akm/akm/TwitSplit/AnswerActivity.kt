@@ -3,13 +3,21 @@ package com.the_akm.akm.TwitSplit
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import com.the_akm.akm.TwitSplit.ConstantCommons.ACTION_BAR_HOME_BUTTON
 import com.the_akm.akm.TwitSplit.ConstantCommons.INTEXT_XTRAS_TWEETERS
 import kotlinx.android.synthetic.main.activity_answer.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class AnswerActivity : AppCompatActivity() {
+
+    companion object {
+        private const val ON_SAVED_INSTANCE_STATE_VALUE = "ON_SAVED_INSTANCE_STATE_VALUE"
+    }
+
+    private var storeString: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +25,19 @@ class AnswerActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-        supportActionBar?.setTitle(ACTION_BAR_HOME_BUTTON)
+        supportActionBar?.title = ACTION_BAR_HOME_BUTTON
 
-        val text = intent.getStringExtra(INTEXT_XTRAS_TWEETERS)
+        val text:String
+
+        if(savedInstanceState != null)
+        {
+                text = savedInstanceState.getString(ON_SAVED_INSTANCE_STATE_VALUE,"")
+
+        }else {
+            text = intent.getStringExtra(INTEXT_XTRAS_TWEETERS)
+        }
+            storeString = text
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             answerActivity_listview.divider = resources.getDrawable(android.R.color.transparent,applicationContext.theme)
@@ -33,7 +51,8 @@ class AnswerActivity : AppCompatActivity() {
             val mAdapter = TwitSplitAdapter(this,tweets)
             answerActivity_listview.adapter = mAdapter
         }else {
-            val tweets = dynamic(text, 46)
+            val width = lineWidth(text.length)
+            val tweets = dynamic(text, width)
             val mAdapter = TwitSplitAdapter(this, tweets)
             answerActivity_listview.adapter = mAdapter
         }
@@ -95,6 +114,23 @@ class AnswerActivity : AppCompatActivity() {
         return lines
     }
 
+    fun lineWidth(stringLength : Int):Int
+    {
+        val result :Int
+
+        if(stringLength <= 414) result = 46
+
+        else if(stringLength in 415..4356) result = 44
+
+        else if(stringLength in 4357..41958) result = 42
+
+        else if(stringLength in 41959..399960) result = 40
+
+        else result = 36
+
+        return result
+    }
+
     override
     fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
@@ -105,5 +141,13 @@ class AnswerActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+    override
+    fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putString(ON_SAVED_INSTANCE_STATE_VALUE, storeString)
+    }
+
 
 }

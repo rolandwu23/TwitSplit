@@ -19,47 +19,53 @@ class TwitSplitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        activity_main_constraintLayout.setOnFocusChangeListener{ v, hasFocus ->
+        activity_main_constraintLayout.setOnFocusChangeListener{ _, hasFocus ->
             if (hasFocus) {
                 dismissKeyboard(activity_main_input_TextInputEditText)
             }
         }
 
-        activity_main_input_TextInputEditText.setOnFocusChangeListener { v, hasFocus ->
+        activity_main_input_TextInputEditText.setOnFocusChangeListener { _, hasFocus ->
             if(hasFocus){
                 activity_main_input_TextInputLayout.error = null
             }
         }
 
 
-        activity_main_send_button.setOnClickListener {
-            if(activity_main_input_TextInputEditText.hasFocus()) {
+        activity_main_send_button.setOnClickListener{
+
+            if(activity_main_input_TextInputEditText.hasFocus())
+            {
                 dismissKeyboard(activity_main_input_TextInputEditText)
             }
             val input_text = activity_main_input_TextInputEditText.text.toString()
             val result = validateString(input_text)
-            when(result){
+            when(result)
+            {
                 -1 -> activity_main_input_TextInputLayout.error = ZERO_LENGTH_ERROR_MSG
                 -2 -> activity_main_input_TextInputLayout.error = ALL_SPACE_ERROR_MSG
                 -3 -> activity_main_input_TextInputLayout.error = CASE_ERROR_MSG
-                 1 -> {
+                 1 ->
+                 {
                     activity_main_input_TextInputLayout.error = null
                     val intent = Intent(this@TwitSplitActivity, AnswerActivity::class.java)
                     intent.putExtra(INTEXT_XTRAS_TWEETERS, input_text)
                     startActivity(intent)
-                }
+                 }
             }
         }
 
     }
 
-    fun dismissKeyboard(editText: EditText){
+    fun dismissKeyboard(editText: EditText)
+    {
         editText.clearFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0)
     }
 
-    fun validateString(st : String):Int{
+    fun validateString(st : String):Int
+    {
         val result :Int
         val words = st.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         if(st.length == 0)

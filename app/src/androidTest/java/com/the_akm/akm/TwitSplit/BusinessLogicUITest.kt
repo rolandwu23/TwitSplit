@@ -32,14 +32,18 @@ class BusinessLogicUITest {
     @JvmField
     val mActivityRule = ActivityTestRule<TwitSplitActivity>(TwitSplitActivity::class.java)
 
-    private val test1 = "I can't believe Tweeter now supports chunking my messages, so I don't have to do it myself."
-    private val test2 = "                                                  "
-    private val test3 = ""
-    private val test4 = "Ican'tbelieveTweeternowsupportschunkingmymessages,soIdonot"
+    companion object {
 
-    private val ans1_test1 = "1/2 I can't believe Tweeter now supports chunking"
-    private val ans2_test1 = "2/2 my messages, so I don't have to do it myself."
+        private val test1 =
+            "I can't believe Tweeter now supports chunking my messages, so I don't have to do it myself."
+        private val test2 = "                                                  "
+        private val test3 = ""
+        private val test4 = "Ican'tbelieveTweeternowsupportschunkingmymessages,soIdonot"
 
+        private val ans1_test1 = "1/2 I can't believe Tweeter now supports chunking"
+        private val ans2_test1 = "2/2 my messages, so I don't have to do it myself."
+
+    }
 
     @Test
     fun Test1(){
