@@ -50,9 +50,9 @@ class BusinessLogicUITest {
 
         Log.e("@Test","Performing Test 1")
 
-        onView(withId(R.id.activity_main_input_TextInputEditText)).perform(typeText(test1), closeSoftKeyboard())
+        onView(withId(R.id.activity_twitsplit_input_TextInputEditText)).perform(typeText(test1), closeSoftKeyboard())
 
-        onView(withId(R.id.activity_main_send_button)).perform(click())
+        onView(withId(R.id.activity_twitsplit_send_button)).perform(click())
 
         onView(withId(R.id.answerActivity_listview)).check(matches(isDisplayed()))
 
@@ -86,13 +86,13 @@ class BusinessLogicUITest {
 
         Log.e("@Test","Performing Test 2")
 
-        onView(withId(R.id.activity_main_input_TextInputEditText)).perform(typeText(test2), closeSoftKeyboard())
+        onView(withId(R.id.activity_twitsplit_input_TextInputEditText)).perform(typeText(test2), closeSoftKeyboard())
 
-        onView(withId(R.id.activity_main_send_button)).perform(click())
+        onView(withId(R.id.activity_twitsplit_send_button)).perform(click())
 
         onView(withText(ConstantCommons.ALL_SPACE_ERROR_MSG)).check(matches(isDisplayed()))
 
-        onView(withId(R.id.activity_main_input_TextInputLayout)).check(matches(CustomMatchers.hasTextInputLayoutHintText("Cannot be all space")))
+        onView(withId(R.id.activity_twitsplit_input_TextInputLayout)).check(matches(CustomMatchers.hasTextInputLayoutHintText("Cannot be all space")))
 
     }
 
@@ -101,13 +101,13 @@ class BusinessLogicUITest {
 
         Log.e("@Test","Performing Test 3")
 
-        onView(withId(R.id.activity_main_input_TextInputEditText)).perform(typeText(test3), closeSoftKeyboard())
+        onView(withId(R.id.activity_twitsplit_input_TextInputEditText)).perform(typeText(test3), closeSoftKeyboard())
 
-        onView(withId(R.id.activity_main_send_button)).perform(click())
+        onView(withId(R.id.activity_twitsplit_send_button)).perform(click())
 
         onView(withText(ConstantCommons.ZERO_LENGTH_ERROR_MSG)).check(matches(isDisplayed()))
 
-        onView(withId(R.id.activity_main_input_TextInputLayout)).check(matches(CustomMatchers.hasTextInputLayoutHintText(ConstantCommons.ZERO_LENGTH_ERROR_MSG)))
+        onView(withId(R.id.activity_twitsplit_input_TextInputLayout)).check(matches(CustomMatchers.hasTextInputLayoutHintText(ConstantCommons.ZERO_LENGTH_ERROR_MSG)))
 
     }
 
@@ -116,13 +116,13 @@ class BusinessLogicUITest {
 
         Log.e("@Test","Performing Test 4")
 
-        onView(withId(R.id.activity_main_input_TextInputEditText)).perform(typeText(test4), closeSoftKeyboard())
+        onView(withId(R.id.activity_twitsplit_input_TextInputEditText)).perform(typeText(test4), closeSoftKeyboard())
 
-        onView(withId(R.id.activity_main_send_button)).perform(click())
+        onView(withId(R.id.activity_twitsplit_send_button)).perform(click())
 
         onView(withText(ConstantCommons.CASE_ERROR_MSG)).check(matches(isDisplayed()))
 
-        onView(withId(R.id.activity_main_input_TextInputLayout)).check(matches(CustomMatchers.hasTextInputLayoutHintText(ConstantCommons.CASE_ERROR_MSG)))
+        onView(withId(R.id.activity_twitsplit_input_TextInputLayout)).check(matches(CustomMatchers.hasTextInputLayoutHintText(ConstantCommons.CASE_ERROR_MSG)))
 
     }
 }
