@@ -11,6 +11,7 @@ class BusinessLogicUnitTest {
 
     companion object {
 
+        // For TwitSplitActivity
         private val test1 = "I can't believe Tweeter now supports chunking my messages, so I don't have to do it myself."
         private val test2 = ""
         private val test3 = "                                                  "
@@ -21,6 +22,7 @@ class BusinessLogicUnitTest {
         private val ans3 = -2
         private val ans4 = -3
 
+        // For Answer Activity
         private val ans1_test1 = "I can't believe Tweeter now supports chunking"
         private val ans2_test1 = "my messages, so I don't have to do it myself."
     }
@@ -32,7 +34,7 @@ class BusinessLogicUnitTest {
         assertThat(result, `is`(ans1))
 
         val answerActivity = AnswerActivity()
-        val arrayList = answerActivity.dynamic(test1, 46)
+        val arrayList = answerActivity.splitString(test1, 46)
         assertThat(arrayList[0], `is`(ans1_test1))
         assertThat(arrayList[1], `is`(ans2_test1))
 

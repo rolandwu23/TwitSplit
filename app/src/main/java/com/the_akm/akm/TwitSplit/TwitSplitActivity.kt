@@ -61,17 +61,18 @@ class TwitSplitActivity : AppCompatActivity() {
     {
         editText.clearFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0)
+        imm.hideSoftInputFromWindow(editText.windowToken, 0)
     }
 
+    // validating input text before navigating to next activity
     fun validateString(st : String):Int
     {
         val result :Int
         val words = st.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        if(st.length == 0)
+        if(st.isEmpty())
         {
             result = -1
-        }else if(st.trim().length == 0)
+        }else if(st.trim().isEmpty())
         {
             result = -2
         }

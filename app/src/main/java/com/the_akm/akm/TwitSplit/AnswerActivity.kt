@@ -3,7 +3,6 @@ package com.the_akm.akm.TwitSplit
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import com.the_akm.akm.TwitSplit.ConstantCommons.ACTION_BAR_HOME_BUTTON
 import com.the_akm.akm.TwitSplit.ConstantCommons.INTEXT_XTRAS_TWEETERS
@@ -39,6 +38,7 @@ class AnswerActivity : AppCompatActivity() {
             storeString = text
 
 
+        // Based on Android Version, setting the list view divider to be transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             answerActivity_listview.divider = resources.getDrawable(android.R.color.transparent,applicationContext.theme)
         } else {
@@ -47,18 +47,19 @@ class AnswerActivity : AppCompatActivity() {
 
         if(text.length <=50)
         {
-            val tweets = dynamic(text,50)
+            val tweets = splitString(text,50)
             val mAdapter = TwitSplitAdapter(this,tweets)
             answerActivity_listview.adapter = mAdapter
         }else {
             val width = lineWidth(text.length)
-            val tweets = dynamic(text, width)
+            val tweets = splitString(text, width)
             val mAdapter = TwitSplitAdapter(this, tweets)
             answerActivity_listview.adapter = mAdapter
         }
     }
 
-    fun dynamic(text: String, width: Int): ArrayList<String>
+    //function for splitting the string based on line width
+    fun splitString(text: String, width: Int): ArrayList<String>
     {
         val words = text.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         val count = words.size
@@ -110,7 +111,7 @@ class AnswerActivity : AppCompatActivity() {
             lines.add(result)
             j = i
         }
-        Collections.reverse(lines)
+        lines.reverse()
         return lines
     }
 
@@ -118,13 +119,13 @@ class AnswerActivity : AppCompatActivity() {
     {
         val result :Int
 
-        if(stringLength <= 414) result = 46
+        if(stringLength <= 414) result = 46  // 1/1 ~ 9/9
 
-        else if(stringLength in 415..4356) result = 44
+        else if(stringLength in 415..4356) result = 44  // 10/10  ~  99/99
 
-        else if(stringLength in 4357..41958) result = 42
+        else if(stringLength in 4357..41958) result = 42 // 100/100  ~ 999/999
 
-        else if(stringLength in 41959..399960) result = 40
+        else if(stringLength in 41959..399960) result = 40 // 10000/1000 ~ 9999/9999
 
         else result = 36
 
@@ -142,6 +143,7 @@ class AnswerActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // store the input text in onSaveInstanceState for screen orientation changes
     override
     fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

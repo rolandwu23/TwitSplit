@@ -29,23 +29,21 @@ class TwitSplitAdapter(var con: Context, var strings: List<String>) : ArrayAdapt
 
         if(strings.size == 1)
         {
-            viewholder.info_text.text = st
+            viewholder.infoText.text = st
         }
         else {
             val text = (position + 1).toString() + "/" + size + " " + st
-            viewholder.info_text.text = text
+            viewholder.infoText.text = text
             Log.e("text", text)
         }
 
         return convertView
     }
 
-    inner class ViewHolder internal constructor(row: View) {
-        internal var info_text: TextView
+//    use  ViewHolder to support recycling of views
 
-        init {
-            this.info_text = row.findViewById<View>(R.id.card_view_ans_text) as TextView
-        }
+    inner class ViewHolder internal constructor(row: View) {
+        internal var infoText: TextView = row.findViewById<View>(R.id.card_view_ans_text) as TextView
 
     }
 }
